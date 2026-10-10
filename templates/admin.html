@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Tasty Heaven</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-utensils"></i>
+
+Tasty<span>Heaven</span> <span class="admin-tag">Admin</span>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">View Site</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- PAGE BANNER -->
+
+<section class="page-banner">
+
+<div class="banner-content">
+
+<h1>Admin Dashboard</h1>
+
+<p>Manage Menu, Orders, Reservations &amp; Messages</p>
+
+</div>
+
+</section>
+
+<!-- ADMIN GUARD MESSAGE (shown if not an admin) -->
+
+<div id="adminGuard" class="admin-guard" style="display:none;">
+    <div class="empty-cart">
+        <h2>Admin access required</h2>
+        <p>Please login with an admin account to view this page.</p>
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+<!-- ADMIN CONTENT -->
+
+<section class="admin-dashboard" id="adminContent">
+
+    <!-- STATS -->
+    <div class="admin-stats-grid" id="adminStats">
+        <div class="admin-stat-card">
+            <h3 id="statUsers">--</h3>
+            <p>Registered Users</p>
+        </div>
+        <div class="admin-stat-card">
+            <h3 id="statOrders">--</h3>
+            <p>Total Orders</p>
+        </div>
+        <div class="admin-stat-card">
+            <h3 id="statReservations">--</h3>
+            <p>Total Reservations</p>
+        </div>
+        <div class="admin-stat-card">
+            <h3 id="statPending">--</h3>
+            <p>Pending Reservations</p>
+        </div>
+        <div class="admin-stat-card">
+            <h3 id="statRevenue">--</h3>
+            <p>Revenue (₹)</p>
+        </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="menuTab">Menu</button>
+        <button class="admin-tab-btn" data-tab="ordersTab">Orders</button>
+        <button class="admin-tab-btn" data-tab="reservationsTab">Reservations</button>
+        <button class="admin-tab-btn" data-tab="usersTab">Users</button>
+        <button class="admin-tab-btn" data-tab="messagesTab">Messages</button>
+    </div>
+
+    <div id="adminFormMessage" class="form-message"></div>
+
+    <!-- MENU TAB -->
+    <div class="admin-tab-panel" id="menuTab">
+
+        <div class="admin-panel-header">
+            <h2>Menu Management</h2>
+            <button class="admin-btn-primary" id="showAddMenuFormBtn">+ Add Menu Item</button>
+        </div>
+
+        <form id="menuItemForm" class="admin-inline-form" style="display:none;">
+            <input type="hidden" id="menuItemId">
+            <input type="text" id="menuItemName" placeholder="Item name" required>
+            <input type="text" id="menuItemDescription" placeholder="Description">
+            <input type="number" id="menuItemPrice" placeholder="Price (₹)" min="1" step="1" required>
+            <input type="text" id="menuItemImage" placeholder="Image filename (e.g. image 1.jpg)">
+            <select id="menuItemCategory">
+                <option>Veg</option>
+                <option>Non Veg</option>
+                <option>Starters</option>
+                <option>Desserts</option>
+                <option>Drinks</option>
+            </select>
+            <label class="admin-checkbox-label">
+                <input type="checkbox" id="menuItemAvailable" checked> Available
+            </label>
+            <div class="admin-form-actions">
+                <button type="submit" class="admin-btn-primary">Save Item</button>
+                <button type="button" class="admin-btn-secondary" id="cancelMenuFormBtn">Cancel</button>
+            </div>
+        </form>
+
+        <div class="admin-table-wrap">
+            <table class="admin-table" id="menuTable">
+                <thead>
+                    <tr><th>Name</th><th>Category</th><th>Price</th><th>Available</th><th>Actions</th></tr>
+                </thead>
+                <tbody><tr><td colspan="5">Loading...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ORDERS TAB -->
+    <div class="admin-tab-panel" id="ordersTab" style="display:none;">
+        <h2>All Orders</h2>
+        <div class="admin-table-wrap">
+            <table class="admin-table" id="ordersTable">
+                <thead>
+                    <tr><th>Order #</th><th>User</th><th>Items</th><th>Total</th><th>Status</th><th>Placed On</th><th>Update</th></tr>
+                </thead>
+                <tbody><tr><td colspan="7">Loading...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- RESERVATIONS TAB -->
+    <div class="admin-tab-panel" id="reservationsTab" style="display:none;">
+        <h2>All Reservations</h2>
+        <div class="admin-table-wrap">
+            <table class="admin-table" id="reservationsTable">
+                <thead>
+                    <tr><th>Name</th><th>Contact</th><th>Date &amp; Time</th><th>Guests</th><th>Request</th><th>Status</th><th>Update</th></tr>
+                </thead>
+                <tbody><tr><td colspan="7">Loading...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- USERS TAB -->
+    <div class="admin-tab-panel" id="usersTab" style="display:none;">
+        <h2>Registered Users</h2>
+        <div class="admin-table-wrap">
+            <table class="admin-table" id="usersTable">
+                <thead>
+                    <tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr>
+                </thead>
+                <tbody><tr><td colspan="4">Loading...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- MESSAGES TAB -->
+    <div class="admin-tab-panel" id="messagesTab" style="display:none;">
+        <h2>Contact Messages</h2>
+        <div class="admin-table-wrap">
+            <table class="admin-table" id="messagesTable">
+                <thead>
+                    <tr><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Received</th></tr>
+                </thead>
+                <tbody><tr><td colspan="5">Loading...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="footer-bottom">
+
+<p>
+
+© 2025 Tasty Heaven Admin Panel.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="app.js"></script>
+<script src="admin.js"></script>
+
+</body>
+
+</html>

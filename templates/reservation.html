@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">S
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reservation | Tasty Heaven</title>
+
+<!-- Google Fonts -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-utensils"></i>
+
+Tasty<span>Heaven</span>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a class="active" href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+<li><a href="my-reservations.html">My Reservations</a></li>
+</ul>
+
+<div class="nav-buttons">
+
+{% if current_user %}{% if current_user.role == 'admin' %}<a href="admin.html" class="login-btn">Admin</a>{% else %}<a href="orders.html" class="login-btn">My Orders</a>{% endif %}<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>{% else %}<a href="login.html" class="login-btn">Login</a>{% endif %}
+
+<a href="menu.html" class="order-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- ================= PAGE BANNER ================= -->
+
+<section class="page-banner">
+
+<div class="banner-content">
+
+<h1>Reserve Your Table</h1>
+
+<p>
+
+Book your favorite table and enjoy a memorable dining experience.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= RESERVATION FORM ================= -->
+
+<section class="reservation-page">
+
+<div class="reservation-container">
+
+<div class="reservation-image">
+
+<img src="reserved.jpg" alt="Reservation">
+
+</div>
+
+<div class="reservation-form">
+
+<h2>
+
+Book A Table
+
+</h2>
+
+<p>
+
+Fill in the details below to reserve your table.
+
+</p>
+
+<div id="formMessage" class="form-message"></div>
+
+<form id="reservationForm">
+
+<div class="input-group">
+
+<input type="text"
+id="resName"
+placeholder="Full Name"
+required>
+
+</div>
+
+<div class="input-group">
+
+<input type="email"
+id="resEmail"
+placeholder="Email Address"
+required>
+
+</div>
+
+<div class="input-group">
+
+<input type="tel"
+id="resPhone"
+placeholder="Phone Number"
+required>
+
+</div>
+
+<div class="input-group">
+
+<input type="date"
+id="resDate"
+required>
+
+</div>
+
+<div class="input-group">
+
+<input type="time"
+id="resTime"
+required>
+
+</div>
+
+<div class="input-group">
+
+<select id="resGuests" required>
+
+<option>Select Guests</option>
+
+<option>1 Person</option>
+
+<option>2 People</option>
+
+<option>3 People</option>
+
+<option>4 People</option>
+
+<option>5 People</option>
+
+<option>6+ People</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<textarea
+id="resSpecialRequest"
+rows="5"
+placeholder="Special Request"></textarea>
+
+</div>
+
+<button type="submit">
+
+Reserve Now
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= WHY RESERVE ================= -->
+
+<section class="why-reserve">
+
+    <h2 class="section-title">Why Reserve With Us?</h2>
+
+    <div class="reserve-grid">
+
+        <div class="reserve-card">
+
+            <i class="fa-solid fa-utensils"></i>
+
+            <h3>Premium Dining</h3>
+
+            <p>
+                Enjoy delicious food prepared by our experienced chefs using fresh ingredients.
+            </p>
+
+        </div>
+
+        <div class="reserve-card">
+
+            <i class="fa-solid fa-couch"></i>
+
+            <h3>Comfortable Seating</h3>
+
+            <p>
+                Spacious seating arrangements for couples, families and large groups.
+            </p>
+
+        </div>
+
+        <div class="reserve-card">
+
+            <i class="fa-solid fa-champagne-glasses"></i>
+
+            <h3>Special Celebrations</h3>
+
+            <p>
+                Celebrate birthdays, anniversaries and special occasions with us.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= RESTAURANT INFO ================= -->
+
+<section class="restaurant-info">
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-location-dot"></i>
+
+Address
+
+</h3>
+
+<p>
+
+123 Food Street,
+
+Hyderabad,
+
+Telangana - 500001
+
+</p>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-phone"></i>
+
+Phone
+
+</h3>
+
+<p>
+
++91 9876543210
+
+</p>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-envelope"></i>
+
+Email
+
+</h3>
+
+<p>
+
+tastyheaven@gmail.com
+
+</p>
+
+</div>
+
+<div class="info-box">
+
+<h3>
+
+<i class="fa-solid fa-clock"></i>
+
+Opening Hours
+
+</h3>
+
+<p>
+
+Monday - Sunday
+
+<br>
+
+11:00 AM - 11:00 PM
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= SPECIAL NOTE ================= -->
+
+<section class="reservation-note">
+
+<h2>
+
+Important Information
+
+</h2>
+
+<p>
+
+• Please arrive 10 minutes before your reservation time.</p>
+
+<p>
+
+• Tables are held for 15 minutes after the reserved time.</p>
+
+<p>
+
+• For groups of more than 10 guests, please contact us directly.</p>
+
+<p>
+
+• We will send a confirmation message after your booking request.</p>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+
+<h2>Tasty Heaven</h2>
+
+<p>
+
+Serving happiness through delicious food,
+excellent service and unforgettable experiences.
+
+</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Follow Us</h3>
+
+<p><i class="fab fa-facebook"></i> Facebook</p>
+
+<p><i class="fab fa-instagram"></i> Instagram</p>
+
+<p><i class="fab fa-twitter"></i> Twitter</p>
+
+<p><i class="fab fa-youtube"></i> YouTube</p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+
+© 2025 Tasty Heaven. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
+

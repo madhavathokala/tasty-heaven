@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gallery | Tasty Heaven</title>
+
+<!-- Google Fonts -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!--================ NAVBAR ================-->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-utensils"></i>
+
+Tasty<span>Heaven</span>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a class="active" href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+{% if current_user %}{% if current_user.role == 'admin' %}<a href="admin.html" class="login-btn">Admin</a>{% else %}<a href="orders.html" class="login-btn">My Orders</a>{% endif %}<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>{% else %}<a href="login.html" class="login-btn">Login</a>{% endif %}
+
+<a href="menu.html" class="order-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!--================ PAGE BANNER ================-->
+
+<section class="page-banner">
+
+<div class="banner-content">
+
+<h1>Food Gallery</h1>
+
+<p>
+
+Take a look at our delicious dishes and beautiful restaurant.
+
+</p>
+
+</div>
+
+</section>
+
+<!--================ GALLERY ================-->
+
+<section class="gallery-page">
+
+<h2 class="section-title">
+
+Our Delicious Collection
+
+</h2>
+
+<p class="section-subtitle">
+
+Every dish is prepared with love, fresh ingredients and authentic flavors.
+
+</p>
+
+<div class="gallery-grid">
+
+<!-- IMAGE 1 -->
+
+<div class="gallery-card">
+
+<img src="image 1.jpg" alt="Chicken Biryani">
+
+<div class="gallery-overlay">
+
+<h3>Chicken Biryani</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 2 -->
+
+<div class="gallery-card">
+
+<img src="image 3.jpg" alt="Paneer Curry">
+
+<div class="gallery-overlay">
+
+<h3>Paneer Butter Masala</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 3 -->
+
+<div class="gallery-card">
+
+<img src="image 8.webp" alt="Pizza">
+
+<div class="gallery-overlay">
+
+<h3>Cheese Pizza</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 4 -->
+
+<div class="gallery-card">
+
+<img src="image 7.jpg" alt="Chicken 65">
+
+<div class="gallery-overlay">
+
+<h3>Chicken 65</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 5 -->
+
+<div class="gallery-card">
+
+<img src="burger.jpeg" alt="Burger">
+
+<div class="gallery-overlay">
+
+<h3>Classic Burger</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 6 -->
+
+<div class="gallery-card">
+
+<img src="noodles.jpg" alt="Noodles">
+
+<div class="gallery-overlay">
+
+<h3>Hakka Noodles</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 7 -->
+
+<div class="gallery-card">
+
+<img src="chocolate brownie.jpg" alt="Dessert">
+
+<div class="gallery-overlay">
+
+<h3>Chocolate Brownie</h3>
+
+</div>
+
+</div>
+
+<!-- IMAGE 8 -->
+
+<div class="gallery-card">
+
+<img src="Mango-Lassi.jpg" alt="Drink">
+
+<div class="gallery-overlay">
+
+<h3>Mango Lassi</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= RESTAURANT AMBIENCE ================= -->
+
+<section class="restaurant-view">
+
+    <div class="restaurant-content">
+
+        <div class="restaurant-image">
+
+            <img src="restarunt interior.jpg" alt="Restaurant Interior">
+
+        </div>
+
+        <div class="restaurant-text">
+
+            <h4>Beautiful Ambience</h4>
+
+            <h2>Enjoy Every Moment With Us</h2>
+
+            <p>
+
+                At Tasty Heaven, we believe that delicious food deserves
+                a beautiful atmosphere. Our restaurant offers elegant
+                interiors, comfortable seating, soothing music,
+                and a warm environment where families and friends
+                can enjoy unforgettable dining experiences.
+
+            </p>
+
+            <a href="reservation.html" class="about-btn">
+
+                Reserve Your Table
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CUSTOMER MEMORIES ================= -->
+
+<section class="customer-gallery">
+
+<h2 class="section-title">
+
+Customer Memories
+
+</h2>
+
+<p class="section-subtitle">
+
+Thousands of happy customers have shared wonderful moments with us.
+
+</p>
+
+<div class="gallery-grid">
+
+<div class="gallery-card">
+
+<img src="customer 1.png" alt="Customer 1">
+
+</div>
+
+<div class="gallery-card">
+
+<img src="customer 2.webp" alt="Customer 2">
+
+</div>
+
+<div class="gallery-card">
+
+<img src="customer 3.jpg" alt="Customer 3">
+
+</div>
+
+<div class="gallery-card">
+
+<img src="customer 4.jpg" alt="Customer 4">
+
+</div>
+
+<div class="gallery-card">
+
+<img src="customer 5.jpg" alt="Customer 5">
+
+</div>
+
+<div class="gallery-card">
+
+<img src="customer 6.jpg" alt="Customer 6">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= INSTAGRAM ================= -->
+
+<section class="instagram-section">
+
+<h2>
+
+Follow Us On Instagram
+
+</h2>
+
+<p>
+
+📸 @TastyHeavenOfficial
+
+</p>
+
+<p>
+
+Share your delicious moments with
+
+<strong>#TastyHeaven</strong>
+
+</p>
+
+<a href="#" class="special-btn">
+
+Follow Now
+
+</a>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+
+<h2>Tasty Heaven</h2>
+
+<p>
+
+Fresh Food • Great Taste • Happy Memories
+
+</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Contact</h3>
+
+<p>📍 Hyderabad, Telangana</p>
+
+<p>📞 +91 9876543210</p>
+
+<p>✉ tastyheaven@gmail.com</p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+
+© 2025 Tasty Heaven. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
+
+

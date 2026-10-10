@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Menu | Tasty Heaven</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"Cart
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!--================ NAVBAR ================-->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-utensils"></i>
+Tasty<span>Heaven</span>
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a class="active" href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+{% if current_user %}{% if current_user.role == 'admin' %}<a href="admin.html" class="login-btn">Admin</a>{% else %}<a href="orders.html" class="login-btn">My Orders</a>{% endif %}<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>{% else %}<a href="login.html" class="login-btn">Login</a>{% endif %}
+
+<a href="cart.html" class="order-btn cart-link">
+    Cart
+    <span class="cart-badge">0</span>
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!--================ PAGE BANNER ================-->
+
+<section class="page-banner">
+
+<div class="banner-content">
+
+<h1>Our Delicious Menu</h1>
+
+<p>Fresh • Healthy • Tasty</p>
+
+</div>
+
+</section>
+
+<!--================ CATEGORY ================-->
+
+<section class="menu-category">
+
+<button class="cat-btn active" data-category="All">All</button>
+
+<button class="cat-btn" data-category="Veg">Veg</button>
+
+<button class="cat-btn" data-category="Non Veg">Non Veg</button>
+
+<button class="cat-btn" data-category="Starters">Starters</button>
+
+<button class="cat-btn" data-category="Desserts">Desserts</button>
+
+<button class="cat-btn" data-category="Drinks">Drinks</button>
+
+</section>
+
+
+<!--================ MENU ================-->
+
+<section class="menu-page">
+
+<div class="menu-grid" id="menuGridMain">
+<p class="menu-loading">Loading menu...</p>
+</div>
+
+</section>
+
+
+<!-- ================= CHEF'S SPECIAL ================= -->
+
+<section class="chef-special">
+
+    <div class="special-content">
+
+        <div class="special-text">
+
+            <h4>Chef's Recommendation</h4>
+
+            <h2>Special Family Combo</h2>
+
+            <p>
+
+                Enjoy our delicious family combo that includes
+                Chicken Dum Biryani, Butter Chicken,
+                Paneer Butter Masala, Butter Naan,
+                Gulab Jamun and Soft Drinks.
+
+                Perfect for 4-5 members.
+
+            </p>
+
+            <h3>Only ₹999</h3>
+
+            <a href="#" class="special-btn">
+
+                Order Combo
+
+            </a>
+
+        </div>
+
+        <div class="special-image">
+
+            <img src="family combo.png" alt="Family Combo">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= DESSERTS ================= -->
+
+<section class="dessert-section">
+
+<h2 class="section-title">
+
+Desserts
+
+</h2>
+
+<div class="menu-grid" id="menuGridDesserts">
+<p class="menu-loading">Loading desserts...</p>
+</div>
+
+</section>
+
+
+<!-- ================= DRINKS ================= -->
+
+<section class="drink-section">
+
+<h2 class="section-title">
+
+Refreshing Drinks
+
+</h2>
+
+<div class="menu-grid" id="menuGridDrinks">
+<p class="menu-loading">Loading drinks...</p>
+</div>
+
+</section>
+
+
+<!-- ================= OFFER ================= -->
+
+<section class="offer-banner">
+
+<h2>
+
+🔥 Weekend Special Offer 🔥
+
+</h2>
+
+<p>
+
+Get Flat <strong>20% OFF</strong>
+
+on orders above ₹999
+
+</p>
+
+<a href="#" class="offer-btn">
+
+Order Now
+
+</a>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+
+<h2>Tasty Heaven</h2>
+
+<p>
+
+Experience delicious food made with
+love, passion and fresh ingredients.
+
+</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Contact</h3>
+
+<p>
+
+📍 Hyderabad, Telangana
+
+</p>
+
+<p>
+
+📞 +91 9876543210
+
+</p>
+
+<p>
+
+✉ tastyheaven@gmail.com
+
+</p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+
+© 2025 Tasty Heaven. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
+
+

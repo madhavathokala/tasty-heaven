@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | Tasty Heaven</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!--================ NAVBAR ================-->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-utensils"></i>
+
+Tasty<span>Heaven</span>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a class="active" href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+{% if current_user %}{% if current_user.role == 'admin' %}<a href="admin.html" class="login-btn">Admin</a>{% else %}<a href="orders.html" class="login-btn">My Orders</a>{% endif %}<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>{% else %}<a href="login.html" class="login-btn">Login</a>{% endif %}
+
+<a href="menu.html" class="order-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!--================ PAGE BANNER ================-->
+
+<section class="page-banner">
+
+<div class="banner-content">
+
+<h1>Contact Us</h1>
+
+<p>
+
+We would love to hear from you.
+
+</p>
+
+</div>
+
+</section>
+
+<!--================ CONTACT SECTION ================-->
+
+<section class="contact-page">
+
+<div class="contact-container">
+
+<div class="contact-info">
+
+<h2>Get In Touch</h2>
+
+<p>
+
+Have questions, feedback or want to reserve a table?
+Contact us anytime.
+
+</p>
+
+<div class="contact-box">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<div>
+
+<h3>Address</h3>
+
+<p>
+
+123 Food Street,
+
+Hyderabad,
+
+Telangana - 500001
+
+</p>
+
+</div>
+
+</div>
+
+<div class="contact-box">
+
+<i class="fa-solid fa-phone"></i>
+
+<div>
+
+<h3>Phone</h3>
+
+<p>
+
++91 9876543210
+
+</p>
+
+</div>
+
+</div>
+
+<div class="contact-box">
+
+<i class="fa-solid fa-envelope"></i>
+
+<div>
+
+<h3>Email</h3>
+
+<p>
+
+tastyheaven@gmail.com
+
+</p>
+
+</div>
+
+</div>
+
+<div class="contact-box">
+
+<i class="fa-solid fa-clock"></i>
+
+<div>
+
+<h3>Working Hours</h3>
+
+<p>
+
+Monday - Sunday
+
+<br>
+
+11:00 AM - 11:00 PM
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="contact-form">
+
+<h2>Send Message</h2>
+
+<div id="formMessage" class="form-message"></div>
+
+<form id="contactForm">
+
+<input
+type="text"
+id="contactName"
+placeholder="Your Name"
+required>
+
+<input
+type="email"
+id="contactEmail"
+placeholder="Your Email"
+required>
+
+<input
+type="text"
+id="contactSubject"
+placeholder="Subject"
+required>
+
+<textarea
+rows="6"
+id="contactMessage"
+placeholder="Write your message here..."
+required></textarea>
+
+<button type="submit">
+
+Send Message
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= GOOGLE MAP ================= -->
+
+<section class="map-section">
+
+<h2 class="section-title">
+
+Find Our Restaurant
+
+</h2>
+
+<div class="map-container">
+
+<iframe
+src="https://www.google.com/maps?q=Hyderabad&output=embed"
+width="100%"
+height="450"
+style="border:0;"
+allowfullscreen=""
+loading="lazy">
+</iframe>
+
+</div>
+
+</section>
+
+<!-- ================= WHY CONTACT US ================= -->
+
+<section class="contact-services">
+
+<h2 class="section-title">
+
+Why Contact Us?
+
+</h2>
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<i class="fa-solid fa-headset"></i>
+
+<h3>24/7 Support</h3>
+
+<p>
+
+Our team is always ready to help you with your questions and bookings.
+
+</p>
+
+</div>
+
+<div class="service-card">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h3>Easy Reservation</h3>
+
+<p>
+
+Reserve your table quickly with just a few simple steps.
+
+</p>
+
+</div>
+
+<div class="service-card">
+
+<i class="fa-solid fa-burger"></i>
+
+<h3>Online Orders</h3>
+
+<p>
+
+Place your favorite food order online for quick delivery.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= SOCIAL MEDIA ================= -->
+
+<section class="social-section">
+
+<h2>
+
+Stay Connected
+
+</h2>
+
+<p>
+
+Follow us on social media for offers, events and delicious updates.
+
+</p>
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-twitter"></i></a>
+
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+
+<h2>Tasty Heaven</h2>
+
+<p>
+
+Fresh Food • Premium Quality • Excellent Service
+
+</p>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</div>
+
+<div class="footer-box">
+
+<h3>Contact Info</h3>
+
+<p>📍 Hyderabad, Telangana</p>
+
+<p>📞 +91 9876543210</p>
+
+<p>✉ tastyheaven@gmail.com</p>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+<p>
+
+© 2025 Tasty Heaven. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | Tasty Heaven</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+<i class="fa-solid fa-utensils"></i>
+Tasty<span>Heaven</span>
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a class="active" href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-buttons">
+
+{% if current_user %}{% if current_user.role == 'admin' %}<a href="admin.html" class="login-btn">Admin</a>{% else %}<a href="orders.html" class="login-btn">My Orders</a>{% endif %}<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>{% else %}<a href="login.html" class="login-btn">Login</a>{% endif %}
+
+<a href="menu.html" class="order-btn">Order Now</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- ================= PAGE BANNER ================= -->
+
+<section class="page-banner">
+
+<div class="banner-content">
+
+<h1>About Us</h1>
+
+<p>
+Home / About
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= OUR STORY ================= -->
+
+<section class="about-page">
+
+<div class="about-image">
+
+<img src="cheif.png" alt="Chef">
+
+</div>
+
+<div class="about-content">
+
+<h5>OUR STORY</h5>
+
+<h2>
+Serving Happiness
+One Plate At A Time
+</h2>
+
+<p>
+
+Tasty Heaven was established with one dream —
+to serve delicious food made from fresh ingredients
+while creating unforgettable dining experiences.
+
+Our chefs combine traditional Indian recipes
+with modern cooking techniques to prepare meals
+that satisfy every food lover.
+
+</p>
+
+<p>
+
+Whether you visit us with family, friends,
+or colleagues, our welcoming atmosphere,
+quality service, and flavorful dishes ensure
+that every visit becomes a memorable one.
+
+</p>
+
+<a href="menu.html" class="about-btn">
+
+Explore Our Menu
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="why-us">
+
+<h2>Why Choose Us</h2>
+
+<div class="why-container">
+
+<div class="why-card">
+
+<i class="fa-solid fa-seedling"></i>
+
+<h3>Fresh Ingredients</h3>
+
+<p>
+
+Every dish is prepared using fresh vegetables,
+premium spices and quality ingredients.
+
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-user-chef"></i>
+
+<h3>Expert Chefs</h3>
+
+<p>
+
+Our experienced chefs prepare every meal
+with passion and perfection.
+
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-award"></i>
+
+<h3>Premium Quality</h3>
+
+<p>
+
+Quality, hygiene and customer satisfaction
+are our highest priorities.
+
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-truck-fast"></i>
+
+<h3>Fast Delivery</h3>
+
+<p>
+
+Enjoy quick delivery while your food
+arrives fresh and hot.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= RESTAURANT STATS ================= -->
+
+<section class="restaurant-stats">
+
+<div class="stat-box">
+
+<h2>15+</h2>
+
+<p>Years Experience</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>150+</h2>
+
+<p>Food Items</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>25+</h2>
+
+<p>Professional Chefs</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2>20K+</h2>
+
+<p>Happy Customers</p>
+
+</div>
+
+</section>
+
+<!-- ================= OUR MISSION ================= -->
+
+<section class="mission">
+
+<h2>Our Mission</h2>
+
+<p>
+
+Our mission is to deliver exceptional food,
+warm hospitality, and unforgettable memories.
+
+We believe every meal should bring people
+together while celebrating authentic flavors,
+fresh ingredients and outstanding customer service.
+
+</p>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<p>
+
+© 2025 Tasty Heaven. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>

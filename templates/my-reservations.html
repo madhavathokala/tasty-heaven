@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Reservations | Tasty Heaven</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <header>
+
+<nav class="navbar">
+
+<div class="logo">
+
+<i class="fa-solid fa-utensils"></i>
+
+Tasty<span>Heaven</span>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="menu.html">Menu</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a class="active" href="reservation.html">Reservation</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+<li><a href="my-reservations.html">My Reservations</a></li>
+</ul>
+
+<div class="nav-buttons">
+
+{% if current_user %}{% if current_user.role == 'admin' %}<a href="admin.html" class="login-btn">Admin</a>{% else %}<a href="orders.html" class="login-btn">My Orders</a>{% endif %}<a href="#" onclick="logoutUser(); return false;" class="login-btn">Logout</a>{% else %}<a href="login.html" class="login-btn">Login</a>{% endif %}
+
+<a href="menu.html" class="order-btn">
+
+Order Now
+
+</a>
+
+</div>
+
+</nav>
+
+</header>  
+
+    <!-- PAGE HEADER -->
+    <section class="page-hero">
+        <h1>My Reservations</h1>
+        <p>View your table reservation history</p>
+    </section>
+
+
+    <!-- RESERVATIONS -->
+    <main class="reservations-page">
+        <div id="reservationsMessage"></div>
+
+        <div id="reservationsList">
+            <p class="loading-text">Loading your reservations...</p>
+        </div>
+    </main>
+
+
+    <script src="app.js"></script>
+
+    <script>
+        async function loadMyReservations() {
+            const list = document.getElementById("reservationsList");
+            const message = document.getElementById("reservationsMessage");
+
+            try {
+                const response = await fetch("/api/my-reservations", {
+                    method: "GET",
+                    credentials: "same-origin"
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    list.innerHTML = `
+                        <div class="reservation-card">
+                            <h2>Please Login</h2>
+                            <p>You need to login to view your reservations.</p>
+                            <a href="login.html" class="reservation-btn">Login</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                if (!result.reservations || result.reservations.length === 0) {
+                    list.innerHTML = `
+                        <div class="reservation-card">
+                            <h2>No Reservations Yet</h2>
+                            <p>You have not made any table reservations.</p>
+                            <a href="reservation.html" class="reservation-btn">
+                                Book A Table
+                            </a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                list.innerHTML = result.reservations.map(reservation => `
+                    <div class="reservation-card">
+
+                        <div class="reservation-top">
+                            <h2>Reservation #${reservation.id}</h2>
+
+                            <span class="reservation-status ${reservation.status}">
+                                ${reservation.status}
+                            </span>
+                        </div>
+
+                        <div class="reservation-details">
+
+                            <p>
+                                <strong>Name:</strong>
+                                ${reservation.name || ""}
+                            </p>
+
+                            <p>
+                                <strong>Date:</strong>
+                                ${reservation.reservation_date || ""}
+                            </p>
+
+                            <p>
+                                <strong>Time:</strong>
+                                ${reservation.reservation_time || ""}
+                            </p>
+
+                            <p>
+                                <strong>Guests:</strong>
+                                ${reservation.guests || ""}
+                            </p>
+
+                            <p>
+                                <strong>Request:</strong>
+                                ${reservation.special_request || "None"}
+                            </p>
+
+                        </div>
+
+                    </div>
+                `).join("");
+
+            } catch (error) {
+                console.error(error);
+
+                list.innerHTML = `
+                    <div class="reservation-card">
+                        <h2>Something went wrong</h2>
+                        <p>Could not load your reservations. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        loadMyReservations();
+    </script>
+
+</body>
+</html>
