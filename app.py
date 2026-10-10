@@ -137,7 +137,8 @@ def create_app():
         if wants_json():
             return jsonify({"success": False, "message": "Something went wrong on our end. Please try again."}), 500
         return render_template("index.html"), 500
-
+    with app.app_context():
+        db.create_all()
     return app
 
 
