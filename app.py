@@ -16,7 +16,7 @@ def create_app():
     )
     app.config.from_object(Config)
 
-    # Make sure the instance/ folder (holds the SQLite file) exists
+    # Make sure the instance/ folder (holds the SQLite file) existsX
     os.makedirs(os.path.join(app.root_path, "instance"), exist_ok=True)
 
     db.init_app(app)
@@ -125,23 +125,6 @@ def create_app():
             return jsonify({"success": False, "message": "You do not have permission to do that."}), 403
         return render_template("index.html"), 403
 
-    @app.errorhandler(404)
-    def not_found(e):
-        if wants_json():
-            return jsonify({"success": False, "message": "Resource not found."}), 404
-        return render_template("index.html"), 404
-
-    @app.errorhandler(500)
-    def server_error(e):
-        db.session.rollback()
-        if wants_json():
-            return jsonify({"success": False, "message": "Something went wrong on our end. Please try again."}), 500
-        return render_template("index.html"), 500
-    with app.app_context():
-        db.create_all()
-
-        admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
-        admin_password = os.environ.get("ADMIN_PASSWORD", "")
     with app.app_context():
         db.create_all()
 
@@ -151,21 +134,26 @@ def create_app():
         if admin_email and admin_password:
             admin = User.query.filter_by(email=admin_email).first()
 
-            if not admin:
+            if admin is None:
                 admin = User(
-                    name="Admin",
+                    name="Administrator",
                     email=admin_email,
-                    role="admin"
+                    role="admin",
                 )
-                admin.set_password(admin_password)
                 db.session.add(admin)
-            else:
-                admin.role = "admin"
-                admin.set_password(admin_password)
 
+            admin.role = "admin"
+            admin.set_password(admin_password)
             db.session.commit()
 
+
+        
+                
+
     return app
+
+
+
 app = create_app()
 
 if __name__ == "__main__":
