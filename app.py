@@ -137,26 +137,24 @@ def create_app():
         if wants_json():
             return jsonify({"success": False, "message": "Something went wrong on our end. Please try again."}), 500
         return render_template("index.html"), 500
-    with app.app_context():
-        db.create_all()
         with app.app_context():
-   db.create_all()
+    db.create_all()
 
-    admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
-    admin_password = os.environ.get("ADMIN_PASSWORD", "")
+        admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
+        admin_password = os.environ.get("ADMIN_PASSWORD", "")
 
-    if admin_email and admin_password:
-        admin = User.query.filter_by(email=admin_email).first()
+        if admin_email and admin_password:
+            admin = User.query.filter_by(email=admin_email).first()
 
-        if not admin:
-            admin = User(
-                name="Admin",
-                email=admin_email,
-                role="admin"
-            )
-            admin.set_password(admin_password)
-            db.session.add(admin)
-            db.session.commit()
+            if not admin:
+                admin = User(
+                    name="Admin",
+                    email=admin_email,
+                    role="admin"
+                )
+                admin.set_password(admin_password)
+                db.session.add(admin)
+                db.session.commit()
         return app
 
 
