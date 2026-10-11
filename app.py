@@ -140,7 +140,7 @@ def create_app():
     with app.app_context():
         db.create_all()
         with app.app_context():
-    db.create_all()
+   db.create_all()
 
     admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
     admin_password = os.environ.get("ADMIN_PASSWORD", "")
@@ -157,8 +157,7 @@ def create_app():
             admin.set_password(admin_password)
             db.session.add(admin)
             db.session.commit()
-
-   return app
+        return app
 
 
 app = create_app()
