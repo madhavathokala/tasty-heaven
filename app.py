@@ -142,6 +142,11 @@ def create_app():
 
         admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
         admin_password = os.environ.get("ADMIN_PASSWORD", "")
+    with app.app_context():
+        db.create_all()
+
+        admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
+        admin_password = os.environ.get("ADMIN_PASSWORD", "")
 
         if admin_email and admin_password:
             admin = User.query.filter_by(email=admin_email).first()
@@ -154,10 +159,13 @@ def create_app():
                 )
                 admin.set_password(admin_password)
                 db.session.add(admin)
-                db.session.commit()
+            else:
+                admin.role = "admin"
+                admin.set_password(admin_password)
+
+            db.session.commit()
+
     return app
-
-
 app = create_app()
 
 if __name__ == "__main__":
