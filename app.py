@@ -1,3 +1,4 @@
+
 import os
 
 from flask import Flask, render_template, session, jsonify, request
@@ -11,7 +12,7 @@ def create_app():
     app = Flask(
         __name__,
         static_folder="static",
-        static_url_path="",   # serve static/* directly at the site root, e.g. static/style.css -> /style.css
+        static_url_path="",
         template_folder="templates",
     )
     app.config.from_object(Config)
@@ -21,7 +22,7 @@ def create_app():
 
     db.init_app(app)
 
-    # ---------------- Register API blueprints ----------------
+    # Register API blueprints
     from routes.auth import auth_bp
     from routes.menu import menu_bp
     from routes.reservation import reservation_bp
@@ -35,8 +36,43 @@ def create_app():
     app.register_blueprint(order_bp)
     app.register_blueprint(contact_bp)
     app.register_blueprint(admin_bp)
+    @app.route("/")
+    @app.route("/index.html")
+    def home():
+        return render_template("index.html")
 
-    # ---------------- Make current user available in every template ----------------
+    @app.route("/login.html")
+    def login_page():
+        return render_template("login.html")
+    
+    def wants_json():
+        return (
+            request.path.startswith("/api/")
+            or request.is_json
+            or "application/json" in request.headers.get("Accept", "")
+        )
+
+    @app.route("/admin.html")
+    def admin_page():
+        user_id = session.get("user_id")
+        user = db.session.get(User, user_id) if user_id else None
+
+        if not user or user.role != "admin":
+            return "Unauthorized: Admin access required", 403
+
+        return render_template("admin.html")
+
+
+    @app.errorhandler(500)
+    def server_error(e):
+        db.session.rollback()
+        if wants_json():
+            return jsonify({
+                "success": False,
+                "message": "Something went wrong on our end. Please try again."
+            }), 500
+        return render_template("index.html"), 500
+
     @app.context_processor
     def inject_user():
         user = None
@@ -156,7 +192,36 @@ def create_app():
 
 app = create_app()
 
-if __name__ == "__main__":
+
+def initialize_database():
     with app.app_context():
-        db.create_all()  # ensure tables exist even if seed.py was never run
+        db.create_all()
+
+        admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
+        admin_password = os.environ.get("ADMIN_PASSWORD", "")
+
+        if admin_email and admin_password:
+            admin = User.query.filter_by(email=admin_email).first()
+
+            if admin is None:
+                admin = User(
+                    name="Administrator",
+                    email=admin_email,
+                    role="admin",
+                )
+                admin.set_password(admin_password)
+                db.session.add(admin)
+                db.session.commit()
+            elif admin.role != "admin":
+                # Do not silently change an existing customer's role.
+                app.logger.warning(
+                    "ADMIN_EMAIL matches an existing non-admin account. "
+                    "No role changes were made."
+                )
+
+
+initialize_database()
+
+
+if __name__ == "__main__":
     app.run(debug=True)

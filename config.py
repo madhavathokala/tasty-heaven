@@ -12,7 +12,10 @@ class Config:
     fallback value is provided so the app can run out of the box.
     """
 
-    SECRET_KEY = os.environ.get("SECRET_KEY", "tasty-heaven-dev-secret-key-change-me")
+    SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "tasty-heaven-local-dev-key-change-this"
+) 
 
     # SQLite database stored inside the instance/ folder.
     SQLALCHEMY_DATABASE_URI = os.environ.get(
