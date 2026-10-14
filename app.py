@@ -37,10 +37,13 @@ def create_app():
     app.register_blueprint(contact_bp)
     app.register_blueprint(admin_bp)
     @app.route("/")
-    @app.route("/index.html")
     def home():
         return render_template("index.html")
 
+    @app.route("/index.html")
+    def index_page():
+     return render_template("index.html")
+    
     @app.route("/login.html")
     def login_page():
         return render_template("login.html")
@@ -86,13 +89,7 @@ def create_app():
     # the frontend) so that no <a href="..."> in the existing HTML had to be
     # rewritten.
 
-    @app.route("/")
-    def home():
-        return render_template("index.html")
-
-    @app.route("/index.html")
-    def index_page():
-        return render_template("index.html")
+    
 
     @app.route("/about.html")
     def about_page():
@@ -114,9 +111,7 @@ def create_app():
     def contact_page():
         return render_template("contact.html")
 
-    @app.route("/login.html")
-    def login_page():
-        return render_template("login.html")
+    
 
     @app.route("/signup.html")
     def signup_page():
@@ -134,9 +129,7 @@ def create_app():
     def my_reservations_page():
         return render_template("my-reservations.html")
 
-    @app.route("/admin.html")
-    def admin_page():
-        return render_template("admin.html")
+    
 
     # ---------------- Error handlers ----------------
     def wants_json():
@@ -193,34 +186,6 @@ def create_app():
 app = create_app()
 
 
-def initialize_database():
-    with app.app_context():
-        db.create_all()
-
-        admin_email = os.environ.get("ADMIN_EMAIL", "").strip().lower()
-        admin_password = os.environ.get("ADMIN_PASSWORD", "")
-
-        if admin_email and admin_password:
-            admin = User.query.filter_by(email=admin_email).first()
-
-            if admin is None:
-                admin = User(
-                    name="Administrator",
-                    email=admin_email,
-                    role="admin",
-                )
-                admin.set_password(admin_password)
-                db.session.add(admin)
-                db.session.commit()
-            elif admin.role != "admin":
-                # Do not silently change an existing customer's role.
-                app.logger.warning(
-                    "ADMIN_EMAIL matches an existing non-admin account. "
-                    "No role changes were made."
-                )
-
-
-initialize_database()
 
 
 if __name__ == "__main__":
